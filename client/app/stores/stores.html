@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="text-right">
+    <button class="btn btn-primary"> <i class="glyphicon glyphicon-plus"></i> New Store </button>
+  </div>
+  <div class="loader" ng-show="$ctrl.loading.stores"></div>
+  <table class="table table-border table-striped" ng-hide="$ctrl.loading.stores">
+    <thead>
+      <tr>
+        <th> Name </th>
+        <th> Address </th>
+        <th> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="3" class="text-center" ng-if="$ctrl.stores.length === 0"> No data found </td>
+      </tr>
+      <tr ng-repeat="store in $ctrl.stores">
+        <td ng-bind="store.name"></td>
+        <td ng-bind="store.address"></td>
+        <td></td>
+      <tr>
+    </tbody>
+  </table>
+</div>
