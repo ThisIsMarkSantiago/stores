@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
+      <div class="loader" ng-show="vm.loading.stores"></div>
+      <div class="alert alert-danger" ng-show="vm.errors.stores" ng-bind="vm.errors.stores"></div>
+      <div ng-hide="vm.loading.stores || vm.errors.stores">
+        <ng-map zoom="15" id="global-map">
+          <marker position="current" title="you are here" id="you"
+            on-click="vm.selectStore({ name: 'You are here.', _id: 'you' })"
+            animation="BOUNCE" centered="true">
+          </marker>
+          <marker ng-repeat="store in vm.markers" id="{{vm.stores[$index]._id}}"
+            position="{{ store }}"
+            title="{{ vm.stores[$index].name }}"
+            on-click="vm.selectStore(vm.stores[$index])">
+          </marker>
+          <directions
+            panel="directions-panel"
+            travel-mode="DRIVING"
+            origin="{{ vm.start }}"
+            destination="{{ vm.destination }}">
+          </directions>
+          <info-window id="info-box">
+            <div>
+              <b ng-bind="vm.selectedStore.name"> </b>
+              <p ng-bind="vm.selectedStore.address"> </p>
+              <a href="" ng-bind="'Get Direction'"
+                ng-click="vm.getDirection(vm.selectedStore)"
+                ng-show="vm.selectedStore.location">
+              </a>
+            </div>
+          </info-window>
+        </ng-map>
+      </div>
+      <div ng-show="vm.destination">
+        <hr/>
+        <div id="directions-panel"></div>
+      </div>
+      <hr/>
+      <div class="text-right">
+        <a ui-sref="main" class="btn btn-default"> Back </a>
+      </div>
+    </div>
+  </div>
+</div>
