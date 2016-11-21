@@ -6,6 +6,10 @@ angular.module('storesApp')
       .state('stores', {
         url: '/stores',
         authenticate: 'admin',
-        template: '<stores></stores>'
+        views: {
+          'content@': {
+            template: '<stores></stores>'
+          }
+        }
       });
   });

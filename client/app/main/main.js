@@ -4,6 +4,10 @@ angular.module('storesApp')
   .config(function($stateProvider) {
     $stateProvider.state('main', {
       url: '/',
-      template: '<main></main>'
+      views: {
+        'content@': {
+          template: '<main></main>'
+        }
+      }
     });
   });
