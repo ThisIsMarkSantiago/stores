@@ -18,7 +18,9 @@
         <td colspan="3" class="text-center text-danger" ng-if="$ctrl.errors.list" ng-bind="$ctrl.errors.list"></td>
       </tr>
       <tr ng-repeat="store in $ctrl.stores">
-        <td ng-bind="store.name"></td>
+        <td>
+          <a ui-sref="stores.details({ id: store._id })" class="btn btn-mini btn-detault" ng-bind="store.name"></a>
+        </td>
         <td ng-bind="store.address"></td>
         <td class="text-right">
           <a ui-sref="stores.edit({ id: store._id })" class="btn btn-mini btn-default">

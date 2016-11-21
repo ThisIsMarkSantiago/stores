@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="loader" ng-show="$ctrl.loading.details"></div>
+      <div class="alert alert-danger" ng-show="$ctrl.errors.details" ng-bind="$ctrl.errors.details"></div>
+      <div ng-hide="$ctrl.loading.details || $ctrl.errors.details">
+        <h3 ng-bind="$ctrl.store.name">  </h3>
+        <p ng-bind="$ctrl.store.address"></p>
+        <input name="location" type="text" class="form-control" ng-model="$ctrl.store.location" readonly required/>
+        <ng-map zoom="15" center="{{$ctrl.store.location}}">
+          <marker position="{{$ctrl.store.location}}" centered="true"></marker>
+        </ng-map>
+      </div>
+      <hr/>
+      <div class="text-right">
+        <a ui-sref="stores.edit({ id: $ctrl.store._id })" class="btn btn-primary">
+          <i class="glyphicon glyphicon-edit"> </i> Edit
+        </a>
+        <a ui-sref="stores" class="btn btn-default"> Back </a>
+      </div>
+    </div>
+  </div>
+</div>

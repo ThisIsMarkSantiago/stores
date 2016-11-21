@@ -22,6 +22,16 @@ angular.module('storesApp')
           }
         }
       })
+      .state('stores.details', {
+        url: '/:id',
+        parent: 'stores',
+        authenticate: 'admin',
+        views: {
+          'content@': {
+            template: '<stores-details></stores-details>'
+          }
+        }
+      })
       .state('stores.edit', {
         url: '/:id/edit',
         parent: 'stores',
