@@ -3,13 +3,24 @@
 import mongoose from 'mongoose';
 
 var StoreSchema = new mongoose.Schema({
-  name: String,
-  address: String,
+  name: {
+    type: String,
+    required: true
+  },
+  address: {
+    type: String,
+    required: true
+  },
   location: {
       type: { type: String },
       coordinates: [],
   },
-  active: Boolean
+  active: {
+    type: Boolean,
+    default: true
+  }
+},{
+  timestamps: true
 });
 
 StoreSchema.index({ location: "2dsphere" });
