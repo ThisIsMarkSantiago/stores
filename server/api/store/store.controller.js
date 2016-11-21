@@ -76,6 +76,12 @@ export function show(req, res) {
 
 // Creates a new Store in the DB
 export function create(req, res) {
+  if (req.body.location) {
+    req.body.location = {
+      type: 'Point',
+      coordinates: req.body.location
+    };
+  }
   return Store.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
@@ -85,6 +91,12 @@ export function create(req, res) {
 export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
+  }
+  if (req.body.location) {
+    req.body.location = {
+      type: 'Point',
+      coordinates: req.body.location
+    };
   }
   return Store.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
