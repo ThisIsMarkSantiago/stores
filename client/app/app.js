@@ -9,7 +9,8 @@ angular.module('storesApp', [
     'ngSanitize',
     'ui.router',
     'ui.bootstrap',
-    'validation.match'
+    'validation.match',
+    'ngMap'
   ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider.otherwise('/');
