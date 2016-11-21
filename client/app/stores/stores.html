@@ -2,8 +2,9 @@
   <div class="text-right">
     <button class="btn btn-primary"> <i class="glyphicon glyphicon-plus"></i> New Store </button>
   </div>
-  <div class="loader" ng-show="$ctrl.loading.stores"></div>
-  <table class="table table-border table-striped" ng-hide="$ctrl.loading.stores">
+  <div class="alert alert-danger" ng-if="$ctrl.errors.delete" ng-bind="$ctrl.errors.delete"></div>
+  <div class="loader" ng-show="$ctrl.loading.list || $ctrl.loading.delete"></div>
+  <table class="table table-border table-striped" ng-hide="$ctrl.loading.list || $ctrl.loading.delete">
     <thead>
       <tr>
         <th> Name </th>
@@ -14,11 +15,16 @@
     <tbody>
       <tr>
         <td colspan="3" class="text-center" ng-if="$ctrl.stores.length === 0"> No data found </td>
+        <td colspan="3" class="text-center text-danger" ng-if="$ctrl.errors.list" ng-bind="$ctrl.errors.list"></td>
       </tr>
       <tr ng-repeat="store in $ctrl.stores">
         <td ng-bind="store.name"></td>
         <td ng-bind="store.address"></td>
-        <td></td>
+        <td class="text-right">
+          <button type="button" ng-click="$ctrl.delete(store)" class="btn btn-mini btn-danger">
+            <i class="glyphicon glyphicon-trash"> </i>
+          </button>
+        </td>
       <tr>
     </tbody>
   </table>
