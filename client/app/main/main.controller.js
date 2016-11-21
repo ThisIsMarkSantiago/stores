@@ -4,30 +4,27 @@
 
   class MainController {
 
-    constructor($http) {
-      this.$http = $http;
-      this.awesomeThings = [];
+    constructor(API) {
+      angular.extend(this, {
+        API,
+        loading: {},
+        errors: {}
+      });
     }
 
     $onInit() {
-      this.$http.get('/api/things')
-        .then(response => {
-          this.awesomeThings = response.data;
-        });
+      this.getFeaturesList();
     }
 
-    addThing() {
-      if (this.newThing) {
-        this.$http.post('/api/things', {
-          name: this.newThing
-        });
-        this.newThing = '';
-      }
+    getFeaturesList() {
+      this.loading.list = true;
+      this.errors.list = undefined;
+      this.API.get('/things')
+        .then(things => this.awesomeThings = things)
+        .catch(() => this.errors.list = 'Something went wrong in fetching features list.')
+        .finally(() => this.loading.list = false);
     }
 
-    deleteThing(thing) {
-      this.$http.delete('/api/things/' + thing._id);
-    }
   }
 
   angular.module('storesApp')
