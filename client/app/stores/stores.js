@@ -11,5 +11,25 @@ angular.module('storesApp')
             template: '<stores></stores>'
           }
         }
+      })
+      .state('stores.create', {
+        url: '/new',
+        parent: 'stores',
+        authenticate: 'admin',
+        views: {
+          'content@': {
+            template: '<stores-form></stores-form>'
+          }
+        }
+      })
+      .state('stores.edit', {
+        url: '/:id/edit',
+        parent: 'stores',
+        authenticate: 'admin',
+        views: {
+          'content@': {
+            template: '<stores-form></stores-form>'
+          }
+        }
       });
   });

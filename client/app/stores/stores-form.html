@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h3> <span ng-bind="$ctrl.store._id ? 'Update' : 'New'"></span> Store </h3>
+      <hr/>
+      <div class="alert alert-danger" ng-show="$ctrl.errors.submit" ng-bind="$ctrl.errors.submit"></div>
+      <div class="alert alert-danger" ng-show="$ctrl.errors.details" ng-bind="$ctrl.errors.details"></div>
+      <div class="loader" ng-show="$ctrl.loading.submit || $ctrl.loading.details"></div>
+      <form name="storeForm" ng-submit="$ctrl.submit(storeForm)" novalidate ng-hide="$ctrl.loading.submit || $ctrl.loading.details">
+        <!-- NAME -->
+        <div class="form-group" ng-class="{ 'has-error': (storeForm.name.$dirty || storeForm.$submitted ) && storeForm.name.$invalid }">
+          <label class="control-label"> Name </label>
+          <input name="name" type="text" class="form-control" ng-model="$ctrl.store.name" required/>
+          <div ng-show="(storeForm.name.$dirty || storeForm.$submitted) && storeForm.name.$invalid">
+            <span class="help-block" ng-show="storeForm.name.$error.required"> Name is required </span>
+          </div>
+        </div>
+
+        <!-- ADDRESS -->
+        <div class="form-group" ng-class="{ 'has-error': (storeForm.address.$dirty || storeForm.$submitted) && storeForm.address.$invalid }">
+          <label class="control-label"> Address </label>
+          <input name="address" type="text" class="form-control" ng-model="$ctrl.store.address" required/>
+          <div ng-show="(storeForm.address.$dirty || storeForm.$submitted) && storeForm.address.$invalid">
+            <span class="help-block" ng-show="storeForm.address.$error.required"> Address is required </span>
+          </div>
+        </div>
+
+        <!-- LOCATION -->
+        <div class="form-group" ng-class="{ 'has-error': (storeForm.location.$dirty || storeForm.$submitted) && storeForm.location.$invalid }">
+          <label class="control-label"> Geo-location </label>
+          <input name="location" type="text" class="form-control" ng-model="$ctrl.store.location" readonly required/>
+          <div ng-show="(storeForm.location.$dirty || storeForm.$submitted) && storeForm.location.$invalid">
+            <span class="help-block" ng-show="storeForm.location.$error.required"> Address is required </span>
+          </div>
+          <ng-map id="location-picker" center="{{$ctrl.store.location}}" zoom="15">
+            <custom-control position="TOP_LEFT" index="1" ng-if="$ctrl.map">
+              <input type="text" places-auto-complete placeholder="Search Here"
+                on-place-changed="$ctrl.onSearch()"
+                bounds="{{$ctrl.map.getBounds()}}"/>
+            </custom-control>
+            <marker position="{{$ctrl.$state.params.id ? $ctrl.store.location : ($ctrl.store.location || 'current')}}" centered="true" draggable="true"
+              on-dragend="$ctrl.setLocation()">
+            </marker>
+          </ng-map>
+          <i class="text-muted pull-right"> * drag map marker to set the location. </i>
+        </div>
+
+        <div class="text-right">
+          <hr />
+          <button type="submit" class="btn btn-primary"> Submit </button>
+          <a ui-sref="stores" class="btn btn-default"> Cancel </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

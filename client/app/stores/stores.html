@@ -1,6 +1,6 @@
 <div class="container">
   <div class="text-right">
-    <button class="btn btn-primary"> <i class="glyphicon glyphicon-plus"></i> New Store </button>
+    <a ui-sref="stores.create" class="btn btn-primary"> <i class="glyphicon glyphicon-plus"></i> New Store </a>
   </div>
   <div class="alert alert-danger" ng-if="$ctrl.errors.delete" ng-bind="$ctrl.errors.delete"></div>
   <div class="loader" ng-show="$ctrl.loading.list || $ctrl.loading.delete"></div>
@@ -21,6 +21,9 @@
         <td ng-bind="store.name"></td>
         <td ng-bind="store.address"></td>
         <td class="text-right">
+          <a ui-sref="stores.edit({ id: store._id })" class="btn btn-mini btn-default">
+            <i class="glyphicon glyphicon-edit"> </i>
+          </a>
           <button type="button" ng-click="$ctrl.delete(store)" class="btn btn-mini btn-danger">
             <i class="glyphicon glyphicon-trash"> </i>
           </button>
