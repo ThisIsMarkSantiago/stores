@@ -7,12 +7,11 @@
 </header>
 
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <h1 class="page-header">Features:</h1>
+  <div class="row content">
+    <div class="col-xs-12 col-sm-4 col-sm-push-8">
       <div class="loader" ng-show="$ctrl.loading.list"></div>
       <div ng-hide="$ctrl.loading.list">
-        <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.awesomeThings">
+        <ul class="nav nav-tabs nav-stacked col-xs-12" ng-repeat="thing in $ctrl.awesomeThings">
           <li><a ui-sref="{{thing.link}}" uib-tooltip="{{thing.info}}">{{thing.name}}</a></li>
         </ul>
         <div class="alert alert-warning text-center" ng-show="$ctrl.awesomeThings.length === 0">
@@ -22,6 +21,12 @@
           <p ng-bind="$ctrl.errors.list"></p>
           <a href="" ng-click="$ctrl.getFeaturesList()"> Retry </a>
         </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-sm-pull-4">
+      <div class="well clearfix animated zoomIn" ng-repeat="i in $ctrl.generateArray(5) track by $index">
+        <img src="http://lorempixel.com/300/200/food/{{$index}}" class="pull-left"/>
+        <p style="text-align: justify" ng-bind="$ctrl.loremipsum[$index]"></p>
       </div>
     </div>
   </div>
