@@ -1,0 +1,63 @@
+#map-page {
+
+  h1 {
+    color: black;
+  }
+
+  .stores {
+    height: 300px;
+    margin-top: 20px;
+    overflow-y: auto;
+
+    .store {
+      padding: 5px;
+      border-radius: 3px;
+    }
+
+    .store:hover, .store.selected {
+      background-color: #81BEDB;
+
+      a {
+        color: white;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  #map-container {
+    margin-top: 20px;
+    border: thick solid #81BEDB;
+
+    #global-map {
+
+      .custom-marker {
+        position: relative;
+
+        img:first-child {
+          position: absolute;
+          top: -30px;
+          left: -20px;
+        }
+
+        img:nth-child(2) {
+          position: absolute;
+          top: -27px;
+          left: -10px;
+        }
+      }
+    }
+  }
+
+  #directions-panel {
+    .adp-directions {
+      width: 100%;
+    }
+    .adp-placemark {
+      background-color: #81BEDB;
+      td {
+        padding: 10px;
+        font-weight: bold;
+      }
+    }
+  }
+}

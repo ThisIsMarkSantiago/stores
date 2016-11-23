@@ -1,22 +1,30 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
-      <div class="loader" ng-show="vm.loading.stores"></div>
-      <div class="alert alert-danger" ng-show="vm.errors.stores" ng-bind="vm.errors.stores"></div>
-      <div ng-hide="vm.loading.stores || vm.errors.stores">
+<div class="container" id="map-page">
+  <div class="loader" ng-show="vm.loading.stores"></div>
+  <div class="alert alert-danger" ng-show="vm.errors.stores" ng-bind="vm.errors.stores"></div>
+  <div class="row animated zoomIn" ng-hide="vm.loading.stores || vm.errors.stores">
+    <div class="col-xs-12">
+      <h1> Branches Map </h1>
+    </div>
+    <div class="col-xs-12 col-md-8">
+      <div class="alert alert-warning" ng-show="vm.errors.map" ng-bind="vm.errors.map"></div>
+      <div id="map-container" ng-if="!vm.errors.map">
         <ng-map zoom="15" id="global-map">
           <marker position="current" title="you are here" id="you"
             on-click="vm.selectStore({ name: 'You are here.', _id: 'you' })"
             animation="BOUNCE" centered="true">
           </marker>
-          <marker ng-repeat="store in vm.markers" id="{{vm.stores[$index]._id}}"
+          <custom-marker ng-repeat="store in vm.markers" id="{{vm.stores[$index]._id}}"
             position="{{ store }}"
             title="{{ vm.stores[$index].name }}"
             on-click="vm.selectStore(vm.stores[$index])">
-          </marker>
+            <a href="" class="custom-marker">
+              <img src="/assets/images/custom marker.png" width="40px" />
+              <img src="/assets/images/cake.png" width="20px"/>
+            </a>
+          </custom-marker>
           <directions
             panel="directions-panel"
-            travel-mode="DRIVING"
+            travel-mode="{{ vm.travelMode }}"
             origin="{{ vm.start }}"
             destination="{{ vm.destination }}">
           </directions>
@@ -24,7 +32,7 @@
             <div>
               <b ng-bind="vm.selectedStore.name"> </b>
               <p ng-bind="vm.selectedStore.address"> </p>
-              <a href="" ng-bind="'Get Direction'"
+              <a href="" ng-bind="'Get Directions'"
                 ng-click="vm.getDirection(vm.selectedStore)"
                 ng-show="vm.selectedStore.location">
               </a>
@@ -32,14 +40,48 @@
           </info-window>
         </ng-map>
       </div>
-      <div ng-show="vm.destination">
-        <hr/>
-        <div id="directions-panel"></div>
+    </div>
+    <div class="col-xs-12 col-md-4 stores">
+      <div ng-repeat="store in vm.stores" class="store"
+        ng-class="{ 'selected': store._id === vm.selectedStore._id }"
+        ng-click="vm.selectStore($event, store)">
+        <strong ng-bind="'Coffee Slices - ' + store.name"></strong>
+        <p ng-bind="store.address"></p>
+        <a href="" ng-bind="'Get Directions'"
+          ng-click="vm.getDirection(vm.selectedStore)"
+          ng-show="store._id === vm.selectedStore._id">
+        </a>
       </div>
+    </div>
+  </div>
+  <div class="row" ng-show="vm.destination">
+    <div class="col-xs-12">
       <hr/>
-      <div class="text-right">
-        <a ui-sref="main" class="btn btn-default"> Back </a>
+      <h4> How to go to Coffee Slices - <span ng-bind="vm.selectedStore.name"></span> </h4>
+    </div>
+    <div class="col-xs-12 animated zoomIn">
+      <div class="row">
+        <div class="col-xs-12 col-md-8" id="directions-panel"> </div>
+        <div class="col-xs-12 col-md-4" id="directions-panel">
+          <div class="form-group" ng-if="vm.map">
+            <label class="control-label"> Starting point </label>
+            <input type="text" class="form-control" places-auto-complete
+              ng-model="vm.search"
+              on-place-changed="vm.onSearch()"
+              bounds="{{ vm.map.getBounds() }}"/>
+          </div>
+          <div class="form-group">
+            <label class="control-label"> Mode of Travel </label>
+            <select class="form-control"
+              ng-options="mode as mode for mode in ['DRIVING', 'BICYCLING', 'TRANSIT', 'WALKING']"
+              ng-model="vm.travelMode"> </select>
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="col-xs-12 text-right">
+      <hr/>
+      <a ui-sref="main" class="btn btn-default"> Back </a>
     </div>
   </div>
 </div>

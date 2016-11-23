@@ -7,6 +7,7 @@ class MapComponent {
     angular.extend(this, {
       API,
       NgMap,
+      travelMode: 'DRIVING',
       loading: {},
       errors: {}
     });
@@ -30,11 +31,23 @@ class MapComponent {
   }
 
   initializeMap() {
-    this.NgMap.getMap('global-map').then(map => this.map = map);
+    const vm = this;
+    if (typeof google === 'object' && typeof google.maps === 'object') {
+      vm.NgMap.getMap('global-map').then(map => vm.map = map);
+      vm.onSearch = function() {
+        vm.getDirection(vm.selectedStore, this.getPlace().geometry && [
+          this.getPlace().geometry.location.lat(),
+          this.getPlace().geometry.location.lng()
+        ]);
+      };
+    } else {
+      vm.errors.map = 'Cannot load map.';
+    }
   }
 
   selectStore(e, store) {
     this.selectedStore = store;
+    this.search = undefined;
     this.map.showInfoWindow('info-box', store._id);
   }
 
