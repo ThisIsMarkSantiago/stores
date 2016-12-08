@@ -6,6 +6,7 @@ var ThingSchema = new mongoose.Schema({
   name: String,
   info: String,
   link: String,
+  order: Number,
   active: Boolean
 });
 

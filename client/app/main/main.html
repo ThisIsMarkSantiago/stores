@@ -11,7 +11,7 @@
     <div class="col-xs-12 col-sm-4 col-sm-push-8">
       <div class="loader" ng-show="$ctrl.loading.list"></div>
       <div ng-hide="$ctrl.loading.list">
-        <ul class="nav nav-tabs nav-stacked col-xs-12" ng-repeat="thing in $ctrl.awesomeThings">
+        <ul class="nav nav-tabs nav-stacked col-xs-12" ng-repeat="thing in $ctrl.awesomeThings | orderBy: order">
           <li><a ui-sref="{{thing.link}}" uib-tooltip="{{thing.info}}">{{thing.name}}</a></li>
         </ul>
         <div class="alert alert-warning text-center" ng-show="$ctrl.awesomeThings.length === 0">

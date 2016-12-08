@@ -10,9 +10,40 @@ import User from '../api/user/user.model';
 Thing.find({}).remove()
   .then(() => {
     Thing.create({
-      name: 'Global Map',
+      name: 'Our Company',
+      info: 'Vision, Mission, Management & Staffs',
+      link: 'main',
+      order: 1
+    },{
+      name: 'History',
+      info: 'Coffee Slices history',
+      link: 'main',
+      order: 2
+    },{
+      name: 'Branches',
       info: 'View map to see nearby stores',
-      link: 'map'
+      link: 'map',
+      order: 3
+    },{
+      name: 'Menu & Pricing',
+      info: 'See our menu, specialties',
+      link: 'main',
+      order: 4
+    },{
+      name: 'Gallery',
+      info: 'Photos & Videos',
+      link: 'main',
+      order: 5
+    },{
+      name: 'Contact Us',
+      info: 'Coffee Slices contact information for your questions',
+      link: 'main',
+      order: 6
+    },{
+      name: 'Feedback',
+      info: 'Send us email suggestions, feedback',
+      link: 'main',
+      order: 7
     });
   });
 
