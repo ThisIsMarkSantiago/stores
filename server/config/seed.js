@@ -12,7 +12,7 @@ Thing.find({}).remove()
     Thing.create({
       name: 'Our Company',
       info: 'Vision, Mission, Management & Staffs',
-      link: 'main',
+      link: 'company',
       order: 1
     },{
       name: 'History',
