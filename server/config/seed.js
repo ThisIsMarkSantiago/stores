@@ -17,7 +17,7 @@ Thing.find({}).remove()
     },{
       name: 'History',
       info: 'Coffee Slices history',
-      link: 'main',
+      link: 'history',
       order: 2
     },{
       name: 'Branches',
