@@ -26,16 +26,6 @@ angular.module('storesApp')
           }
         }
       })
-      .state('signup', {
-        url: '/signup',
-        views: {
-          'content@': {
-            templateUrl: 'app/account/signup/signup.html',
-            controller: 'SignupController',
-            controllerAs: 'vm'
-          }
-        }
-      })
       .state('settings', {
         url: '/settings',
         authenticate: true,
