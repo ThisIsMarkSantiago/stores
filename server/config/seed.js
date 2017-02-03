@@ -32,7 +32,7 @@ Thing.find({}).remove()
     },{
       name: 'Gallery',
       info: 'Photos & Videos',
-      link: 'main',
+      link: 'gallery',
       order: 5
     },{
       name: 'Contact Us',

@@ -26,5 +26,13 @@ angular.module('storesApp')
             templateUrl: 'app/static-pages/menu.html'
           }
         }
+      })
+      .state('gallery', {
+        url: '/gallery',
+        views: {
+          'content@': {
+            templateUrl: 'app/static-pages/gallery.html'
+          }
+        }
       });
   });
