@@ -42,6 +42,7 @@ class StoresFormComponent {
     vm.NgMap.getMap('location-picker')
       .then(map => {
         vm.map = map;
+        console.log(vm.map.getBounds());
         if (!this.$state.params.id) {
           vm.setLocation();
         }
