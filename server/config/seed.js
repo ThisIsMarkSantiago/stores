@@ -37,7 +37,7 @@ Thing.find({}).remove()
     },{
       name: 'Contact Us',
       info: 'Coffee Slices contact information for your questions',
-      link: 'main',
+      link: 'contact',
       order: 6
     },{
       name: 'Feedback',

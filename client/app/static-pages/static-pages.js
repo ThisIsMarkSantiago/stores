@@ -34,5 +34,13 @@ angular.module('storesApp')
             templateUrl: 'app/static-pages/gallery.html'
           }
         }
+      })
+      .state('contact', {
+        url: '/contact',
+        views: {
+          'content@': {
+            templateUrl: 'app/static-pages/contact.html'
+          }
+        }
       });
   });
