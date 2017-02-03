@@ -27,7 +27,7 @@ Thing.find({}).remove()
     },{
       name: 'Menu & Pricing',
       info: 'See our menu, specialties',
-      link: 'main',
+      link: 'menu',
       order: 4
     },{
       name: 'Gallery',

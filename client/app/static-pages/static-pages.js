@@ -18,5 +18,13 @@ angular.module('storesApp')
             templateUrl: 'app/static-pages/history.html'
           }
         }
+      })
+      .state('menu', {
+        url: '/menu',
+        views: {
+          'content@': {
+            templateUrl: 'app/static-pages/menu.html'
+          }
+        }
       });
   });
