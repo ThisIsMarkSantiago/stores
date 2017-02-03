@@ -39,11 +39,6 @@ Thing.find({}).remove()
       info: 'Coffee Slices contact information for your questions',
       link: 'contact',
       order: 6
-    },{
-      name: 'Feedback',
-      info: 'Send us email suggestions, feedback',
-      link: 'main',
-      order: 7
     });
   });
 
