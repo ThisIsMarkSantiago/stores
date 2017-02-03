@@ -8,7 +8,7 @@
     <div class="col-xs-12 col-md-8">
       <div class="alert alert-warning" ng-show="vm.errors.map" ng-bind="vm.errors.map"></div>
       <div id="map-container" ng-if="!vm.errors.map">
-        <ng-map zoom="15" id="global-map">
+        <ng-map zoom="15" id="global-map" ng-if="vm.stores">
           <marker position="current" title="you are here" id="you"
             on-click="vm.selectStore({ name: 'You are here.', _id: 'you' })"
             animation="BOUNCE" centered="true">

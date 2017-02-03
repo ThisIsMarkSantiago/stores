@@ -23,11 +23,10 @@ class MapComponent {
         this.markers = stores.map(store => {
           return store.location.coordinates.reverse();
         });
+        this.initializeMap();
       })
       .catch(() => this.errors.stores = 'Something went wrong in fetching list of stores. Try to reload the page.')
       .finally(() => this.loading.stores = false);
-
-    this.initializeMap();
   }
 
   initializeMap() {
